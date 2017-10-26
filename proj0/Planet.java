@@ -22,7 +22,7 @@ public class Planet {
 		this.imgFileName = p.imgFileName;
 	}
 
-	public static double calcDistance (Planet p){
+	public double calcDistance (Planet p){
 		double distance;
 		double distance_X = Math.abs(this.xxPos - p.xxPos);
 		double distance_Y = Math.abs(this.yyPos - p.yyPos);
@@ -43,7 +43,7 @@ public class Planet {
 	public double calcForceExertedByX (Planet p){
 		double Force = this.calcForceExertedBy(p);
 		double distance = this.calcDistance(p);
-		double distance_X = Math.abs(this.xxPos - p.xxPos);
+		double distance_X = p.xxPos - this.xxPos;
 
 		double Force_X = Force * distance_X / distance;
 
@@ -53,7 +53,7 @@ public class Planet {
 	public double calcForceExertedByY (Planet p){
 		double Force = this.calcForceExertedBy(p);
 		double distance = this.calcDistance(p);
-		double distance_Y = Math.abs(this.yyPos - p.yyPos);
+		double distance_Y = p.yyPos - this.yyPos;
 
 		double Force_Y = Force * distance_Y / distance;
 
@@ -63,14 +63,9 @@ public class Planet {
 	public double calcNetForceExertedByX (Planet[] planets){
 		double Force_X = 0;
 
-		for (int i = 0; i < planets.length; i++){
-			if (this.equals(planets[i]))
-				i++;
-			double Force = this.calcForceExertedBy(planets[i]);
-			double distance = this.calcDistance(planets[i]);
-			double distance_X = Math.abs(this.xxPos - planets[i].xxPos);
-
-			Force_X += Force * distance_X / distance;
+		for (int i = 0; i < planets.length; ++i){
+			if (!this.equals(planets[i]))
+				Force_X += this.calcForceExertedByX(planets[i]);
 		}
 		return Force_X;
 	}
@@ -78,19 +73,14 @@ public class Planet {
 	public double calcNetForceExertedByY (Planet[] planets){
 		double Force_Y = 0;
 
-		for (int i = 0; i < planets.length; i++){
-			if (this.equals(planets[i]))
-				i++;
-			double Force = this.calcForceExertedBy(planets[i]);
-			double distance = this.calcDistance(planets[i]);
-			double distance_Y = Math.abs(this.yyPos - planets[i].yyPos);
-
-			Force_Y += Force * distance_Y / distance;
+		for (int i = 0; i < planets.length; ++i){
+			if (!this.equals(planets[i]))
+				Force_Y += this.calcForceExertedByY(planets[i]);
 		}
 		return Force_Y;
 	}
 	
-	public static void update(double dt, double fX, double fY){
+	public void update(double dt, double fX, double fY){
 		double t_XP, t_YP, t_xV, t_yV;
 
 		t_xV = this.xxVel + dt * fX/this.mass;
@@ -103,4 +93,9 @@ public class Planet {
 		this.xxVel = t_xV;
 		this.yyVel = t_yV;
 	}
+
+	public void draw(){
+		StdDraw.picture(this.xxPos, this.yyPos, "images/"+this.imgFileName);
+	}
+
 }
