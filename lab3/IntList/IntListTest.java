@@ -68,10 +68,10 @@ public class IntListTest {
 
     @Test
     public void testReverse() {
-        assertEquals(null, IntList.Reverse(null));
+        assertEquals(null, IntList.reverse(null));
         IntList A = IntList.list(1,2,3,4,5,6);
-        assertEquals(IntList.list(6,5,4,3,2,1), IntList.Reverse(A));
-        assertNotEquals(A, IntList.Reverse(A));
+        assertEquals(IntList.list(6,5,4,3,2,1), IntList.reverse(A));
+        assertNotEquals(A, IntList.reverse(A));
     }
 
 

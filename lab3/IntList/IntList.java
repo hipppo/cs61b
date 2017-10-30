@@ -3,18 +3,19 @@ import java.util.Formatter;
 /**
  * Scheme-like pairs that can be used to form a list of integers.
  *
- * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
+ * @author P. N. Hilfinger, with some modifications by Josh Hug and
+ * melaniecebula
  *         [Do not modify this file.]
  */
 public class IntList {
     /**
      * First element of list.
      */
-    public int first;
+    private int first;
     /**
      * Remaining elements of list.
      */
-    public IntList rest;
+    private IntList rest;
 
     /**
      * A List with first FIRST0 and rest REST0.
@@ -81,8 +82,9 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         IntList res = A;
-        while(A.rest != null)
+        while (A.rest != null) {
             A = A.rest;
+        }
         A.rest = B;
         return res;
     }
@@ -92,42 +94,53 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        if ( A == null && B == null)
+        if (A == null && B == null) {
             return null;
-        IntList res = new IntList( A.first, null);
+        }
+        IntList res = new IntList(A.first, null);
         IntList ptr = res;
         A = A.rest;
-        while (A != null){
-            ptr.rest = new IntList( A.first, null);
+        while (A != null) {
+            ptr.rest = new IntList(A.first, null);
             A = A.rest;
             ptr = ptr.rest;
         }
-        while (B != null){
-            ptr.rest = new IntList( B.first, null);
+        while (B != null) {
+            ptr.rest = new IntList(B.first, null);
             B = B.rest;
             ptr = ptr.rest;
         }
         return res;
     }
 
-    public static IntList Reverse(IntList L) {
-        if (L == null)
+    /**
+     * Reverse function.
+     * @param L
+     * @return result
+     */
+    public static IntList reverse(IntList L) {
+        if (L == null) {
             return null;
+        }
         IntList count = L;
         int num = 1;
-        while(count.rest != null) {
+        while (count.rest != null) {
             num += 1;
             count = count.rest;
         }
         IntList res = new IntList(count.first, null);
         IntList result = res;
-        for (; num > 2; --num) {
+        for (; num > 2; num--) {
+            IntList temp = L;
             for (int i = 0; i < num - 2; i++) {
-                L = L.rest;
+                temp = temp.rest;
             }
-            res.rest = L;
+            res.rest = temp;
             res.rest.rest = null;
+            res = res.rest;
         }
+        res.rest = L;
+        L.rest = null;
         return result;
     }
 
@@ -197,31 +210,40 @@ public class IntList {
      * an IntList into a String and that IntList has a loop, your computer
      * don't get stuck in an infinite loop.
      */
+    /**
+     * Detect a cycle.
+     * @param A
+     * @return int cycles
+     */
 
     private int detectCycles(IntList A) {
         IntList tortoise = A;
         IntList hare = A;
 
-        if (A == null)
+        if (A == null) {
             return 0;
+        }
 
         int cnt = 0;
 
 
         while (true) {
             cnt++;
-            if (hare.rest != null)
+            if (hare.rest != null) {
                 hare = hare.rest.rest;
-            else
+            } else {
                 return 0;
+            }
 
             tortoise = tortoise.rest;
 
-            if (tortoise == null || hare == null)
+            if (tortoise == null || hare == null) {
                 return 0;
+            }
 
-            if (hare == tortoise)
+            if (hare == tortoise) {
                 return cnt;
+            }
         }
     }
 
