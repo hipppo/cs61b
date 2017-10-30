@@ -110,6 +110,26 @@ public class IntList {
         return res;
     }
 
+    public static IntList Reverse(IntList L) {
+        if (L == null)
+            return null;
+        IntList count = L;
+        int num = 1;
+        while(count.rest != null) {
+            num += 1;
+            count = count.rest;
+        }
+        IntList res = new IntList(count.first, null);
+        IntList result = res;
+        for (; num > 2; --num) {
+            for (int i = 0; i < num - 2; i++) {
+                L = L.rest;
+            }
+            res.rest = L;
+            res.rest.rest = null;
+        }
+        return result;
+    }
 
     /**
      * DO NOT MODIFY ANYTHING BELOW THIS LINE! Many of the concepts below here
@@ -207,7 +227,7 @@ public class IntList {
 
     @Override
     /** Outputs the IntList as a String. You are not expected to read
-     *  or understand this method. */
+     * or understand this method. */
     public String toString() {
         Formatter out = new Formatter();
         String sep;

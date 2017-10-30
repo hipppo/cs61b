@@ -1,4 +1,4 @@
-public class StrollThroughThePark extends Trial {
+public class    StrollThroughThePark extends Trial {
 
     /**
      *  The intrepid adventurer Cal Ford is taking a lovely stroll through the jungle looking for treasures.
