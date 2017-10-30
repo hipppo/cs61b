@@ -19,7 +19,7 @@ public class IntListTest {
         IntList x = IntList.list(3, 2, 1);
         assertEquals(threeTwoOne, x);
     }
-
+/*
     @Test
     public void testdSquareList() {
         IntList L = IntList.list(1, 2, 3);
@@ -39,7 +39,7 @@ public class IntListTest {
      * Keep in mind that dcatenate(A, B) is NOT required to leave A untouched.
      * Anything can happen to A.
      */
-
+/*
     @Test
     public void testSquareListRecursive() {
         IntList L = IntList.list(1, 2, 3);
@@ -65,5 +65,5 @@ public class IntListTest {
         assertEquals(exp, IntList.catenate(A, B));
         assertEquals(IntList.list(1, 2, 3), A);
     }
-
+*/
 }

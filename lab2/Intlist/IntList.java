@@ -190,7 +190,7 @@ public class IntList {
 
     @Override
     /** Outputs the IntList as a String. You are not expected to read
-     * or understand this method. */
+     *  or understand this method. */
     public String toString() {
         Formatter out = new Formatter();
         String sep;
