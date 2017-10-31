@@ -3,19 +3,18 @@
  */
 public class SLList {
 
-    private static class IntNode {
-        private int item;
-        private IntNode next;
+        private static class IntNode {
+            private int item;
+            private IntNode next;
 
-        public IntNode(int i, IntNode n) {
-            item = i;
-            next = n;
+            public IntNode(int i, IntNode n) {
+                item = i;
+                next = n;
+            }
         }
-    }
 
-    private IntNode sentinel;
-    private IntNode last
-    private int size;
+        private IntNode sentinel;
+        private int size;
 
     public SLList() {
         sentinel = new IntNode(99, null);
@@ -38,15 +37,6 @@ public class SLList {
         return sentinel.next.item;
     }
 
-    /*
-    private int size(IntNode p) {
-        if(p == null) {
-            return 0;
-        }
-        return 1 + size(p.next);
-    }
-    */
-
     public int size() {
         return size;
     }
@@ -57,6 +47,6 @@ public class SLList {
             ptr = ptr.next;
         }
         ptr.next = new IntNode(x, null);
-        size +=1;
+        size += 1;
     }
 }
