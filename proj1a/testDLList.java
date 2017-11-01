@@ -19,4 +19,5 @@ public class testDLList {
         test.addLast(2);
         assertEquals(3, test.size());
     }
+
 }
