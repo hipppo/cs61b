@@ -54,15 +54,29 @@ public class ArrayDeque<Item> {
     }
 
     public void printDeque() {
-        System.out.println()
+        System.out.print(items[0]);
+        for(int i = 1; i < items.length; i++) {
+            System.out.print(" " + items[i]);
+        }
     }
-/*
-    public Item removeFirst() {
 
+    public void removeFirst() {
+        if(prev == items.length - 1) {
+            prev = 0;
+        } else {
+            prev += 1;
+        }
+        items[prev] = null;
+        size -= 1;
     }
 
-    public Item removeLast() {
-
+    public void removeLast() {
+        if(next == 0) {
+            next = items.length;
+        } else {
+            next -= 1;
+        }
+        items[next] = null;
+        size -= 1;
     }
-*/
 }
